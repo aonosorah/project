@@ -21,3 +21,9 @@ export interface IUser {
     bs: string;
   };
 }
+
+export interface IUserModalProps {
+  user: IUser | null;
+  isOpen: boolean;
+  onClose: () => void;
+}
