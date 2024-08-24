@@ -94,78 +94,81 @@ export default function Home() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      <table className="table-auto w-full border-collapse">
-        <thead>
-          <tr>
-            <th
-              className="border p-2 text-white cursor-pointer"
-              onClick={() => handleSort('name')}
-            >
-              Name{' '}
-              {sortColumn === 'name' && (sortDirection === 'asc' ? '↑' : '↓')}
-            </th>
-            <th
-              className="border p-2 text-white cursor-pointer"
-              onClick={() => handleSort('username')}
-            >
-              Username{' '}
-              {sortColumn === 'username' &&
-                (sortDirection === 'asc' ? '↑' : '↓')}
-            </th>
-            <th
-              className="border p-2 text-white cursor-pointer"
-              onClick={() => handleSort('email')}
-            >
-              Email{' '}
-              {sortColumn === 'email' && (sortDirection === 'asc' ? '↑' : '↓')}
-            </th>
-            <th
-              className="border p-2 text-white cursor-pointer"
-              onClick={() => handleSort('phone')}
-            >
-              Phone{' '}
-              {sortColumn === 'phone' && (sortDirection === 'asc' ? '↑' : '↓')}
-            </th>
-            <th
-              className="border p-2 text-white cursor-pointer"
-              onClick={() => handleSort('address.city')}
-            >
-              City{' '}
-              {sortColumn === 'address.city' &&
-                (sortDirection === 'asc' ? '↑' : '↓')}
-            </th>
-            <th
-              className="border p-2 text-white cursor-pointer"
-              onClick={() => handleSort('company.name')}
-            >
-              Company{' '}
-              {sortColumn === 'company.name' &&
-                (sortDirection === 'asc' ? '↑' : '↓')}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {sortedUsers.length ? (
-            sortedUsers.map((user) => (
-              <tr key={user.id} onClick={() => handleUserClick(user)}>
-                <td className="border p-2 text-white">{user.name}</td>
-                <td className="border p-2 text-white">{user.username}</td>
-                <td className="border p-2 text-white">{user.email}</td>
-                <td className="border p-2 text-white">{user.phone}</td>
-                <td className="border p-2 text-white">{user.address.city}</td>
-                <td className="border p-2 text-white">{user.company.name}</td>
-              </tr>
-            ))
-          ) : (
+      <div className="overflow-auto shadow">
+        <table className="table-auto w-full border-collapse">
+          <thead>
             <tr>
-              <td colSpan={6} className="border p-2 text-center text-white">
-                This user could not be located
-              </td>
+              <th
+                className="border p-2 text-white cursor-pointer"
+                onClick={() => handleSort('name')}
+              >
+                Name{' '}
+                {sortColumn === 'name' && (sortDirection === 'asc' ? '↑' : '↓')}
+              </th>
+              <th
+                className="border p-2 text-white cursor-pointer"
+                onClick={() => handleSort('username')}
+              >
+                Username{' '}
+                {sortColumn === 'username' &&
+                  (sortDirection === 'asc' ? '↑' : '↓')}
+              </th>
+              <th
+                className="border p-2 text-white cursor-pointer"
+                onClick={() => handleSort('email')}
+              >
+                Email{' '}
+                {sortColumn === 'email' &&
+                  (sortDirection === 'asc' ? '↑' : '↓')}
+              </th>
+              <th
+                className="border p-2 text-white cursor-pointer"
+                onClick={() => handleSort('phone')}
+              >
+                Phone{' '}
+                {sortColumn === 'phone' &&
+                  (sortDirection === 'asc' ? '↑' : '↓')}
+              </th>
+              <th
+                className="border p-2 text-white cursor-pointer"
+                onClick={() => handleSort('address.city')}
+              >
+                City{' '}
+                {sortColumn === 'address.city' &&
+                  (sortDirection === 'asc' ? '↑' : '↓')}
+              </th>
+              <th
+                className="border p-2 text-white cursor-pointer"
+                onClick={() => handleSort('company.name')}
+              >
+                Company{' '}
+                {sortColumn === 'company.name' &&
+                  (sortDirection === 'asc' ? '↑' : '↓')}
+              </th>
             </tr>
-          )}
-        </tbody>
-      </table>
-
+          </thead>
+          <tbody>
+            {sortedUsers.length ? (
+              sortedUsers.map((user) => (
+                <tr key={user.id} onClick={() => handleUserClick(user)}>
+                  <td className="border p-2 text-white">{user.name}</td>
+                  <td className="border p-2 text-white">{user.username}</td>
+                  <td className="border p-2 text-white">{user.email}</td>
+                  <td className="border p-2 text-white">{user.phone}</td>
+                  <td className="border p-2 text-white">{user.address.city}</td>
+                  <td className="border p-2 text-white">{user.company.name}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={6} className="border p-2 text-center text-white">
+                  This user could not be located
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
       <UserModal
         user={selectedUser}
         isOpen={isModalOpen}
